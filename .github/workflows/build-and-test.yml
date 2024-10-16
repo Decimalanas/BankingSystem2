@@ -19,17 +19,15 @@ jobs:
           distribution: 'temurin'
 
       - name: Check Current Directory
-        run: pwd  # This will print the current working directory
+        run: pwd
 
       - name: List Files
-        run: ls -al  # This will list all files and directories in the current directory
+        run: ls -al
 
       - name: Build with Maven
         run: |
-          cd BankingSystem2
-          mvn clean package
+          mvn clean package  # No need to change directories
 
       - name: Run tests
         run: |
-          cd BankingSystem2
-          mvn test
+          mvn test  # No need to change directories
