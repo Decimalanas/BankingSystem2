@@ -10,24 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up JDK
-        uses: actions/setup-java@v3
+        uses: actions/checkout@v2
+      - name: Build and test
+        run: |
+          mvn clean package
+      - name: Generate report
+        run: |
+          mvn site
+      - name: Upload report
+        uses: actions/upload-artifact@v2
         with:
-          java-version: '11'
-          distribution: 'temurin'
-
-      - name: Check Current Directory
-        run: pwd
-
-      - name: List Files
-        run: ls -al
-
-      - name: Build with Maven
-        run: |
-          mvn clean package  # No need to change directories
-
-      - name: Run tests
-        run: |
-          mvn test  # No need to change directories
+          name: report
+          path: target/site
