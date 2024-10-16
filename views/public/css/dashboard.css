@@ -1,0 +1,315 @@
+/* CSS remains the same */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    height: 100vh;
+    background: #f6faf4;
+    color: #333;
+    overflow: hidden;
+}
+.sidebar {
+    background: #123456; /* Deep blue */
+    color: #ffffff;
+    padding: 20px;
+    width: 300px; /* Adjusted width */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 3px 0 15px rgba(0,0,0,0.2);
+    flex-shrink: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content: start; /* Align items horizontally */
+    margin-left: -20px;
+    margin-bottom: -20px;
+}
+
+.logo img {
+    width: 130px; /* Adjust based on your actual logo size */
+    height: auto; /* Fixed height for logo */
+    margin-right: -20px; /* Space between logo and text */
+}
+
+.bank-name {
+    margin-top: -3px;
+    font-size: 34px; /* Adjust size as needed */
+    color: #ffffff; /* White color text */
+    font-weight: 600; /* Font weight for the bank name */
+}
+
+.menu-item {
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    transition: 0.5s;
+}
+.menu-item:hover, .menu-item.active {
+    background: rgb(255, 255, 255);
+    color: #000;
+    transform: translateY(5px);
+}
+.menu-item i {
+    margin-right: 10px;
+}
+.content {
+    flex-grow: 1;
+    padding: 40px;
+    background: url(https://i.ibb.co/YDPxXwt/dots-6297146-1920.jpg);
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* .content-section {
+    display: none;
+    opacity: 0;
+    transition: 0.5s;
+} */
+
+.content-section.show {
+    display: block;
+    opacity: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between; /* Pushes the greeting to the left and the logout button to the right */
+    align-items: center; /* Vertically aligns items in the middle */
+    margin-bottom: 40px; /* Maintains space below this section */
+    width: 100%; /* Ensures the header uses the full width of its container */
+}
+.welcome {
+    margin-top: 20px;
+    font-size: 30px;
+    color: #ffffff;
+}
+.balance-box {
+    background: #ffffff;
+    padding: 70px; /* Increase padding for larger appearance */
+    width: 400px;
+    font-size: 30px; /* Larger font size for better visibility */
+    cursor: pointer;
+    border-radius: 12px;
+    justify-content: center; /* Center the text and icon */
+    text-align: center; /* Ensure text is centered inside the box */
+    margin: 20px 0; /* Add some margin around the box */
+    transition: 0.5s;
+    margin-top: 40px;
+}
+
+.balance-box:hover {
+    background: #f3f3f3;
+    transform: translateY(-5px);
+}
+#accountContainer {
+display: flex;
+flex-wrap: wrap;
+gap: 30px; /* Adjust spacing between boxes */
+}
+
+.account-box, .new-account-box {
+background: #ffffff; /* White background */
+padding: 50px; /* Customizable padding */
+width: calc(40% - 60px); /* Custom width, ensuring two boxes per row */
+font-size: 18px; /* Slightly smaller font size than the balance box */
+cursor: pointer; /* Cursor changes to pointer on hover */
+border-radius: 12px; /* Rounded corners */
+justify-content: center; /* Center content horizontally */
+text-align: center; /* Center content text */
+transition: 0.5s; /* Smooth transformation on hover */
+position: relative; /* For positioning remove icon */
+box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.account-box:hover, .new-account-box:hover {
+background: #f3f3f3; /* Lighter shade on hover */
+transform: translateY(-5px); /* Slight upward lift on hover */
+}
+
+.new-account-box i {
+margin-right: 10px; /* Space between the icon and the text */
+font-size: 32px; /* Slightly larger font size for the icon */
+}
+
+.remove-account {
+position: absolute;
+top: 10px;
+right: 10px;
+display: flex;
+align-items: center;
+cursor: pointer;
+color: #ce1111;
+font-size: 16px;
+transition: 0.5s;
+}
+
+.remove-account:hover {
+color: #000;
+}
+
+
+
+.withdrawal-box, .deposit-box {
+    background: #ffffff; /* White background */
+    padding: 70px; /* Customizable padding */
+    width: 400px; /* Custom width */
+    font-size: 24px; /* Slightly smaller font size than the balance box */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    border-radius: 12px; /* Rounded corners */
+    justify-content: center; /* Center content horizontally */
+    text-align: center; /* Center content text */
+    margin: 20px 0; /* Center box horizontally and add vertical margin */
+    transition: 0.5s; /* Smooth transformation on hover */
+}
+
+.withdrawal-box:hover, .deposit-box:hover {
+    background: #f3f3f3; /* Lighter shade on hover */
+    transform: translateY(-5px); /* Slight upward lift on hover */
+}
+.withdrawal-box i, .deposit-box i {
+    margin-right: 10px; /* Space between the icon and the text */
+    font-size: 32px; /* Slightly larger font size for the icon */
+}
+/* Style for the modal background */
+.withdrawal-modal, .deposit-modal, .transfer-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    transition: background-color 0.5s ease;
+}
+
+/* Modal Content */
+.withdrawal-modal-content, .deposit-modal-content, .transfer-modal-content {
+    transform: scale(0.9);
+    background-color: #123456;
+    color: #ffffff;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 30px;
+    border: 1px solid #888;
+    border-radius: 12px;
+    width: 100%; /* Could be more or less, depending on screen size */
+    max-width: 600px; /* Maximum width */
+    opacity: 0;
+    transition: all 0.5s ease; /* Transition for transform and opacity */
+}
+
+/* The Close Button */
+.close-button {
+    color: #ffffff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+input[type="number"], input[type="text"], select {
+    width: calc(100% - 40px);
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 8px;
+    background: #f3f3f3;
+    color: #333;
+    transition: background 0.3s ease;
+}
+input[type="number"]:focus, input[type="text"]:focus, select:focus {
+    background: #e0e0e0;
+}
+.enterAmountInBetwwenAccounts-heading {
+    margin-top: 20px; /* Adjust this value to increase or decrease the space */
+}
+.enterAmountInBeneficiary-heading{
+    margin-top: 20px;
+}
+.modal-button {
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white; /* White text */
+    border: none;
+    border-radius: 12px;
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    margin-top: 20px; /* Space from the input box */
+    margin-left: 420px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px; /* Font size for readability */
+    transition: 0.5s; /* Smooth transition for hover effect */
+}
+
+.modal-button:hover {
+    background: rgb(255, 255, 255);
+    color: #000;
+}
+.transfer-container {
+display: flex;
+justify-content: space-around;
+}
+
+.transfer-box {
+background: #ffffff; /* White background */
+padding: 80px; /* Customizable padding */
+width: 480px; /* Custom width */
+font-size: 24px; /* Slightly smaller font size than the balance box */
+cursor: pointer; /* Cursor changes to pointer on hover */
+border-radius: 12px; /* Rounded corners */
+justify-content: center; /* Center content horizontally */
+text-align: center; /* Center content text */
+margin: 20px; /* Center box horizontally and add vertical margin */
+transition: 0.5s; /* Smooth transformation on hover */
+}
+
+.transfer-box:hover {
+background: #f3f3f3; /* Lighter shade on hover */
+transform: translateY(-5px); /* Slight upward lift on hover */
+}
+
+.transfer-box i {
+margin-right: 10px; /* Space between the icon and the text */
+font-size: 32px; /* Slightly larger font size for the icon */
+}
+
+
+.sign-out {
+    background: #ffffff;
+    color: #ce1111;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 18px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+}
+.sign-out:hover {
+    background: #000000;
+    color: #ffffff;
+    transform: translateY(5px);
+}
+.sign-out i {
+    margin-right: 5px;
+}

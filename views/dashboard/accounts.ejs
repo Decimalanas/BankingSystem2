@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Accounts</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="https://i.ibb.co/85s2rNt/Bank-logo-without-text.png" alt="Bank Logo">
+            <span class="bank-name">T3 Bank</span>
+        </div>
+
+        <div class="overviewBtn">
+            <form id="overviewForm" action="/dashboard/overview">
+                <div class="menu-item" id="overviewBtn"><i class="fas fa-tachometer-alt"></i> Overview</div>
+            </form>
+        </div>
+
+        <div style="background: rgb(255, 255, 255); color: #000; transform: translateY(5px);" class="menu-item" id="overviewBtn">
+            <i class="fas fa-user"></i> Accounts
+        </div>
+        <div class="menu-item" id="depositBtn"><i class="fas fa-credit-card"></i> Deposit</div>
+        <div class="menu-item" id="withdrawalBtn"><i class="fas fa-hand-holding-usd"></i> Withdrawal</div>
+        <div class="menu-item" id="transferBtn"><i class="fas fa-exchange-alt"></i> Transfer</div>
+    </div>
+
+    <div class="content">
+        <div id="overviewContent" class="content-section">
+            <div class="header">
+                <div class="welcome">Hi,<strong><%= username %></strong>!</div>
+                <form method="post" action="/logout" id="logoutForm">
+                    <button type="submit" class="sign-out"><i class="fas fa-sign-out-alt"></i> Log out</button>
+                </form>
+            </div>
+
+            <div id="accountContainer">
+                <!-- Display the base account -->
+                <div class="account-box" id="baseAccount">
+                    <div>Account Number</div>
+                    <div><strong><%= accounts[0].AccountNumber %></strong></div>
+                    <div>Balance</div>
+                    <div><strong>$<%= accounts[0].Balance %></strong></div>
+                </div>
+
+                <!-- Loop through the rest of the accounts and display them with a remove option -->
+                <% accounts.slice(1).forEach((account, index) => { %>
+                    <div class="account-box" id="account<%= index + 2 %>">
+                        <div class="remove-account"><i class="fas fa-trash"></i> Remove Account</div>
+                        <div>Account Number</div>
+                        <div><strong><%= account.AccountNumber %></strong></div>
+                        <div>Balance</div>
+                        <div><strong>$<%= account.Balance %></strong></div>
+                    </div>
+                <% }) %>
+
+                <!-- Button to create a new account -->
+                <div class="new-account-box" id="createAccountBtn">
+                    <i class="fas fa-plus"></i> Create New Account
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
