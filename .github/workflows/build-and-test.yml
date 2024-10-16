@@ -18,6 +18,12 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
+      - name: Check Current Directory
+        run: pwd  # This will print the current working directory
+
+      - name: List Files
+        run: ls -al  # This will list all files and directories in the current directory
+
       - name: Build with Maven
         run: |
           cd BankingSystem2
